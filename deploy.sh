@@ -11,8 +11,10 @@ cd "$APP_DIR" || exit 1
 
 git pull origin main
 
-pip3 install -r requirements.txt
+
+source venv/bin/activate
+pip install -r requirements.txt
 
 pkill -f app.py || true
 
-python3 app.py 
+nohup python app.py > app.log 2>&1 & 
