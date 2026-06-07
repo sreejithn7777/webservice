@@ -43,6 +43,6 @@ sleep 2
 
 echo "=== Starting app ==="
 
-nohup python app.py > app.log 2>&1 &
+nohup python3 app.py > app.log 2>&1 &
 
 echo "=== App started successfully on port $PORT ==="
