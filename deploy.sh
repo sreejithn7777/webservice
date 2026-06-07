@@ -10,6 +10,8 @@ fi
 
 cd "$APP_DIR" || exit 1
 
+echo "====App Directory: $APP_DIR===="
+
 pip install -r requirements.txt
 
 echo "=== Stopping old Flask app ==="
@@ -26,6 +28,5 @@ fi
 
 echo "=== Starting app ==="
 
-nohup python app.py > app.log 2>&1 &
-
+python3 app.py 
 echo "App started"
