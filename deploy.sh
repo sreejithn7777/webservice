@@ -1,14 +1,15 @@
 #!/bin/bash
-sudo su
-APP_DIR=/home/ec2-user/webservice
 
-if [ ! -d "$APP_DIR" ]; then
-    git clone https://github.com/sreejithn7777/webservice.git $APP_DIR
+APP_DIR=/var/lib/jenkins/webservice
+REPO_URL=https://github.com/<username>/<repo>.git
+
+if [ ! -d "$APP_DIR/.git" ]; then
+    git clone "https://github.com/sreejithn7777/webservice.git" "$APP_DIR"
 fi
 
-cd $APP_DIR
+cd "$APP_DIR" || exit 1
 
-git pull
+git pull origin main
 
 pip3 install -r requirements.txt
 
