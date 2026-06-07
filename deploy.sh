@@ -10,11 +10,6 @@ fi
 
 cd "$APP_DIR" || exit 1
 
-git pull origin main
-
-echo "=== Activate venv ==="
-source venv/bin/activate
-
 pip install -r requirements.txt
 
 echo "=== Stopping old Flask app ==="
