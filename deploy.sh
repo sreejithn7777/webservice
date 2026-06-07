@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sudo su
 APP_DIR=/home/ec2-user/webservice
 
 if [ ! -d "$APP_DIR" ]; then
