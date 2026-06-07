@@ -1,8 +1,9 @@
-#!/bin/bash
-
 APP_DIR=/var/lib/jenkins/webservice
 REPO_URL=https://github.com/sreejithn7777/webservice.git
 
+PORT=5001
+
+echo "=== Clone or update repo ==="
 if [ ! -d "$APP_DIR/.git" ]; then
     git clone "$REPO_URL" "$APP_DIR"
 fi
@@ -11,10 +12,25 @@ cd "$APP_DIR" || exit 1
 
 git pull origin main
 
-
+echo "=== Activate venv ==="
 source venv/bin/activate
+
 pip install -r requirements.txt
 
-pkill -f app.py || true
+echo "=== Stopping old Flask app ==="
 
-nohup python app.py > app.log 2>&1 & 
+# Find process using port 5001 (BEST METHOD)
+PID=$(lsof -t -i:$PORT || true)
+
+if [ ! -z "$PID" ]; then
+    echo "Killing process using port $PORT → PID $PID"
+    kill -9 $PID || true
+else
+    echo "No process found on port $PORT"
+fi
+
+echo "=== Starting app ==="
+
+nohup python app.py > app.log 2>&1 &
+
+echo "App started"
