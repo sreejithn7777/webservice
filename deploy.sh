@@ -1,10 +1,10 @@
 #!/bin/bash
 
 APP_DIR=/var/lib/jenkins/webservice
-REPO_URL=https://github.com/<username>/<repo>.git
+REPO_URL=https://github.com/sreejithn7777/webservice.git
 
 if [ ! -d "$APP_DIR/.git" ]; then
-    git clone "https://github.com/sreejithn7777/webservice.git" "$APP_DIR"
+    git clone "$REPO_URL" "$APP_DIR"
 fi
 
 cd "$APP_DIR" || exit 1
